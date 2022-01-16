@@ -1,4 +1,4 @@
-# API REST com Tornado e Mongo
+# API REST with Python Tornado e Mongodb
 The purpose of this test is to develop a **CRUD** to facilitate the management of employees of a technology company.
 
 In the employee registration form on the front end of the application, you have the following fields to fill in:
@@ -16,9 +16,9 @@ Fields with * are mandatory!
 | --- | --- | --- | --- | --- |
 | Create | POST | json | /employee | Create a employee entity with this payload |
 | Read | GET | - | /employee | Get all employee entities from the resource |
-| Read | GET | - | /employee/<id> | Get a single nutemployee entity |
-| Update | PUT | json | /employee/<id> | Update a employee entity with this payload |
-| Delete | DELETE | - | /employee/<id> | Delete a employee entity |
+| Read | GET | - | /employee/:id | Get a single nutemployee entity |
+| Update | PUT | json | /employee/:id | Update a employee entity with this payload |
+| Delete | DELETE | - | /employee/:id | Delete a employee entity |
 
 Payload must be include as body json raw and formatted like below, you are free to include any desired propety:
 
