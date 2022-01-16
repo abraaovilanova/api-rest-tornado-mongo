@@ -27,7 +27,8 @@ Payload must be include as body json raw and formatted like below, you are free 
 	"name":"Fulano de tal",
 	"gender":"Male",
 	"email":"fulanodetal@mail.com"
-	...
+	"..."
 }
 
 ```
+For a Step by step in Portuguese of the entire process in the development of the project [Click Here](step-bt-step-ptbr.md)

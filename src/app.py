@@ -2,9 +2,11 @@ import tornado.ioloop
 import tornado.web
 
 import json
-import database
 from bson import json_util
 from bson.objectid import ObjectId
+
+import database
+import utils
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
@@ -12,20 +14,33 @@ class MainHandler(tornado.web.RequestHandler):
 
 class EmployeeHandler(tornado.web.RequestHandler):
     def post(self):
+
+        list_mandatory = ['name','birth_date','gender','email','cpf','start_date']
+
         new_employee = json.loads(self.request.body)
+
+        list_dict_keys = list(new_employee.keys())
+
+        if not(utils.mandatory_keys_check(list_mandatory, list_dict_keys)):
+            self.set_status(400)
+            self.write('Fail to create an Employee. Please check your data')
+            return None
 
         db = database.db_connect()
 
         x = db.insert_one(new_employee)
 
-        self.write({"Response":"New employee created!"})
+        self.write("New employee created!")
     
     def get(self):
         db = database.db_connect()
 
         list_employees = [doc for doc in db.find({})]
 
-        self.write({"Response": json.loads(json_util.dumps(list_employees))})
+        if(len(list_employees)>0):
+            self.write({"Response": json.loads(json_util.dumps(list_employees))})
+        else:
+            self.write("Empty database")
 
 class EmployeesHandler(tornado.web.RequestHandler):
     def get(self, _id):
